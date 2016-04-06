@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 
+Error.stackTraceLimit = Infinity;
+
 var StaticMarkupRenderComponent = React.createClass({
   render() {
     var stuffToRender = <noscript><img src="tracking-fallback-pixel.png" /></noscript>;
