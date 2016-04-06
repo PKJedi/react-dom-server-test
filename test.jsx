@@ -20,6 +20,7 @@ var ComponentWillMountSetStateComponent = React.createClass({
   },
 });
 
+// Works
 var staticRenderLast = ReactDOMServer.renderToString(
   <div>
     <ComponentWillMountSetStateComponent />
@@ -29,6 +30,9 @@ var staticRenderLast = ReactDOMServer.renderToString(
 
 console.log(staticRenderLast);
 
+// Dies with
+// TypeError: Cannot read property '_currentElement' of null
+// in the setState
 var staticRenderFirst = ReactDOMServer.renderToString(
   <div>
     <StaticMarkupRenderComponent />
