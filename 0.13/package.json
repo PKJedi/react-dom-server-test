@@ -1,0 +1,13 @@
+{
+  "name": "react-dom-server-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Petri Koivula <petri.koivula@iki.fi>",
+  "license": "ISC",
+  "dependencies": {
+    "react": "0.13"
+  }
+}
