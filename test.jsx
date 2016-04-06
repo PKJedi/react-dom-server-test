@@ -19,7 +19,7 @@ var ComponentWillMountSetStateComponent = React.createClass({
   },
   render() {
     return <div>{this.state.groovy}</div>;
-  },
+  }
 });
 
 // Works
