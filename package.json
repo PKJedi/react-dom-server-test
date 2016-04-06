@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "node_modules/.bin/babel-node test.jsx"
+    "test": "node test.js"
   },
   "author": "Petri Koivula <petri.koivula@iki.fi>",
   "license": "ISC",
   "dependencies": {
-    "babel": "5.8.38",
     "react": "0.14.8",
     "react-dom": "0.14.8"
   }

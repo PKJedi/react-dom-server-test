@@ -1,15 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import ReactDOMServer from 'react-dom/server'
+var React = require('react');
+var ReactDOMServer = require('react-dom/server');
 
 Error.stackTraceLimit = Infinity;
 
 var StaticMarkupRenderComponent = React.createClass({
   render() {
-    var stuffToRender = <noscript><img src="tracking-fallback-pixel.png" /></noscript>;
+    var stuffToRender = React.DOM.noscript({}, React.DOM.img({src: 'tracking-fallback-pixel.png'}));
     var staticContent = ReactDOMServer.renderToStaticMarkup(stuffToRender);
     var getStaticContent = () => ({__html: staticContent});
-    return <div dangerouslySetInnerHTML={getStaticContent()} />
+    return React.DOM.div({dangerouslySetInnerHTML: getStaticContent()});
   }
 });
 
@@ -18,16 +17,17 @@ var ComponentWillMountSetStateComponent = React.createClass({
     this.setState({groovy: 'doovy'});
   },
   render() {
-    return <div>{this.state.groovy}</div>;
+    return React.DOM.div({}, this.state.groovy);
   }
 });
 
 // Works
 var staticRenderLast = ReactDOMServer.renderToString(
-  <div>
-    <ComponentWillMountSetStateComponent />
-    <StaticMarkupRenderComponent />
-  </div>
+  React.DOM.div(
+    {},
+    React.createElement(ComponentWillMountSetStateComponent),
+    React.createElement(StaticMarkupRenderComponent)
+  )
 );
 
 console.log(staticRenderLast);
@@ -36,10 +36,11 @@ console.log(staticRenderLast);
 // TypeError: Cannot read property '_currentElement' of null
 // in the setState
 var staticRenderFirst = ReactDOMServer.renderToString(
-  <div>
-    <StaticMarkupRenderComponent />
-    <ComponentWillMountSetStateComponent />
-  </div>
+  React.DOM.div(
+    {},
+    React.createElement(StaticMarkupRenderComponent),
+    React.createElement(ComponentWillMountSetStateComponent)
+  )
 );
 
 console.log(staticRenderFirst);
